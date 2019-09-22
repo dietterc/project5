@@ -8,17 +8,15 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class Main extends ApplicationAdapter {
 	SpriteBatch batch;
 	
-	EntityList masterList = new EntityList();
-	int count;
+	static EntityList masterList = new EntityList();
+
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		
-		count = 0;
-		
 		masterList.insert(new TestObject());
-		masterList.insert(new TestObject());
+		masterList.insert(new Wall());
 	}
 
 	@Override
@@ -38,14 +36,6 @@ public class Main extends ApplicationAdapter {
 			curr = masterList.getNext();
 		}
 		
-		count++;
-		if (count >= 50) {
-			((TestObject) masterList.top.item).changeSprite("test2.jpg");
-		}
-		if (count >= 100) {
-			((TestObject) masterList.top.item).changeSprite("test.jpg");
-			count = 0;
-		}
 		
 		
 		batch.end();

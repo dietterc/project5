@@ -1,6 +1,7 @@
 package project5.src;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Rectangle;
 
 public abstract class Entity {
 
@@ -22,4 +23,16 @@ public abstract class Entity {
 		sprite.setRotation(angle);
 	}
 	
+	protected boolean collidingWith(Entity other) {
+		
+		Rectangle rect1 = sprite.getBoundingRectangle();
+		Rectangle rect2 = other.sprite.getBoundingRectangle();
+		
+		if(rect1.overlaps(rect2)) {
+			System.out.println("Collision");
+		}else
+			System.out.println("-");
+		
+		return false;
+	}
 }

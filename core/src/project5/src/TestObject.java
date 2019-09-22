@@ -31,6 +31,7 @@ public class TestObject extends Entity {
 		super.step(); //call parents first
 		movement();
 		pointAtMouse();
+		collidingWith(Main.masterList.top.item);
 	}
 	
 	private void movement() {
@@ -45,7 +46,7 @@ public class TestObject extends Entity {
 	private void pointAtMouse() {
 		
 		int mouseX = Gdx.input.getX();
-		int mouseY = Math.abs(Gdx.input.getY() - 480); //because origins are different ??
+		int mouseY = Math.abs(Gdx.input.getY() - 480); //because origins are different..?
 		
 		int xx = Math.abs(mouseX - x);
 		int yy = Math.abs(mouseY - y);
@@ -63,6 +64,7 @@ public class TestObject extends Entity {
 			angle = (int) Math.toDegrees(Math.atan2(xx,yy)) + 270;
 		}
 		
-		
 	}
+	
+	
 }
