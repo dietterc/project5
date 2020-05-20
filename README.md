@@ -1,3 +1,3 @@
  
-use `ctrl + shift + b` to run
+use `ctrl + shift + b` to build
 
