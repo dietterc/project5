@@ -31,7 +31,7 @@ public class TestObject extends Entity {
 		super.step(); //call parents first
 		movement();
 		pointAtMouse();
-		collidingWith(Main.masterList.top.item);
+		collidingWith(Main.masterList.top.item); 
 	}
 	
 	private void movement() {
