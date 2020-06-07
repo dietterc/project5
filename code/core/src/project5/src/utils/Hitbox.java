@@ -49,6 +49,24 @@ public class Hitbox {
 
     }
 
+    public boolean overlaps(Hitbox other) {
+
+        for(int i=0;i<subBoxes.size();i++) {
+            for(int j=0;j<other.subBoxes.size();j++) {
+                
+                SubHitbox box1 = subBoxes.get(i);
+                SubHitbox box2 = other.subBoxes.get(j);
+
+                if(box1.overlaps(box2)) {
+                    return true;
+                }
+
+            }
+        }
+
+        return false;
+    }
+
 }
 
 class SubHitbox {
@@ -93,6 +111,13 @@ class SubHitbox {
         p3.add(xDiff, yDiff);
         p4.add(xDiff, yDiff);
 
+    }
+
+    public boolean overlaps(SubHitbox other) {
+
+        
+
+        return false;
     }
 
 }

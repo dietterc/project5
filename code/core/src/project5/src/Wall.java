@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public class Wall extends Entity {
 
+	boolean collision;
+
 	//called when object is created
 	public Wall() {
 		super();
@@ -16,7 +18,7 @@ public class Wall extends Entity {
 		angle = 0;
 		speed = 0;
 		
-		
+		collision = false;
 		
 	}
 	
@@ -29,6 +31,15 @@ public class Wall extends Entity {
 	 */
 	public void step() {
 		super.step(); //call parents first
+
+		if(collidingWith(Main.testObject)) {
+			collision = true;
+			changeSprite("red_wall.jpg");
+		}
+		else if(collision) {
+			changeSprite("wall.jpg");
+			collision = false;
+		}
 		
 	}
 	

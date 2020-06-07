@@ -30,10 +30,7 @@ public abstract class Entity {
 	
 	protected boolean collidingWith(Entity other) {
 		
-		Rectangle rect1 = sprite.getBoundingRectangle();
-		Rectangle rect2 = other.sprite.getBoundingRectangle();
-		
-		if(rect1.overlaps(rect2)) {
+		if(hitbox.overlaps(other.hitbox)) {
 			//System.out.println("Collision");
 		}else {
 			//System.out.println("-");

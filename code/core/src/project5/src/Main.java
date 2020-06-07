@@ -14,6 +14,7 @@ public class Main extends ApplicationAdapter {
 	
 	static EntityList masterList = new EntityList();
 	public static ArrayList<Hitbox> hitboxList = new ArrayList<Hitbox>();
+	public static Entity testObject = new TestObject();
 
 	private final boolean drawHitboxes = true;
 
@@ -22,7 +23,7 @@ public class Main extends ApplicationAdapter {
 	public void create () {
 		batch = new SpriteBatch();
 		
-		masterList.insert(new TestObject());
+		masterList.insert(testObject);
 		masterList.insert(new Wall());
 
 	}
@@ -31,6 +32,13 @@ public class Main extends ApplicationAdapter {
 	public void render () {
 		Gdx.gl.glClearColor(.75f, .5f, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+		if(drawHitboxes) {
+			for(int i=0;i<hitboxList.size();i++) {
+				hitboxList.get(i).draw();
+			}
+		}
+
 		batch.begin();
 		
 		//Go through every entity in the entity list
@@ -46,11 +54,6 @@ public class Main extends ApplicationAdapter {
 
 		batch.end();
 
-		if(drawHitboxes) {
-			for(int i=0;i<hitboxList.size();i++) {
-				hitboxList.get(i).draw();
-			}
-		}
 
 	}
 	
