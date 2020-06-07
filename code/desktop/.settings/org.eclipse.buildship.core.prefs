@@ -2,10 +2,17 @@ arguments=
 auto.sync=false
 build.scans.enabled=false
 connection.gradle.distribution=GRADLE_DISTRIBUTION(VERSION(6.3))
+<<<<<<< HEAD
 connection.project.dir=
 eclipse.preferences.version=1
 gradle.user.home=
 java.home=/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home
+=======
+connection.project.dir=..
+eclipse.preferences.version=1
+gradle.user.home=
+java.home=C\:/Program Files/Java/jdk1.8.0_231
+>>>>>>> 51e4c7d52140ddc98659cf34ebdd10de00fb9836
 jvm.arguments=
 offline.mode=false
 override.workspace.settings=true

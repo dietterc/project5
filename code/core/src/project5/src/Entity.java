@@ -3,18 +3,23 @@ package project5.src;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
 
+import project5.src.utils.*;
+
 public abstract class Entity {
 
 	public Sprite sprite;
-	public int x;
-	public int y;
-	public int angle;
-	public int speed;
+	protected int x;
+	protected int y;
+	protected int angle;
+	protected int speed;
+	protected String name;
+
+	protected Hitbox hitbox;
 	
 	public Entity() {
 		
 	}
-	
+	 
 	/**
 	 * Called every game loop for every entity.
 	 */
@@ -29,10 +34,14 @@ public abstract class Entity {
 		Rectangle rect2 = other.sprite.getBoundingRectangle();
 		
 		if(rect1.overlaps(rect2)) {
-			System.out.println("Collision");
-		}else
-			System.out.println("-");
-		
+			//System.out.println("Collision");
+		}else {
+			//System.out.println("-");
+		}
 		return false;
+	}
+
+	public String getName() {
+		return name;
 	}
 }

@@ -5,7 +5,10 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
+import project5.src.utils.*;
+
 public class TestObject extends Entity {
+
 
 	//called when object is created
 	public TestObject() {
@@ -17,6 +20,12 @@ public class TestObject extends Entity {
 		y = 200;
 		angle = 90;
 		speed = 300;
+
+		name = "Test Object 1";
+
+		Point[] boxes = {new Point(175,175),new Point(175,225),new Point(225,225),new Point(225,175)};
+
+		hitbox = new Hitbox(this,boxes);
 		
 	}
 	
@@ -30,16 +39,24 @@ public class TestObject extends Entity {
 	public void step() {
 		super.step(); //call parents first
 		movement();
+
 		pointAtMouse();
-		collidingWith(Main.masterList.top.item); 
+
+		collidingWith(Main.masterList.getTopItem());
+
 	}
 	
 	private void movement() {
 		
+		int oldX = x;
+		int oldY = y;
+
 		if(Gdx.input.isKeyPressed(Input.Keys.A)) x -= speed * Gdx.graphics.getDeltaTime();
 		if(Gdx.input.isKeyPressed(Input.Keys.D)) x += speed * Gdx.graphics.getDeltaTime();
 		if(Gdx.input.isKeyPressed(Input.Keys.W)) y += speed * Gdx.graphics.getDeltaTime();
 		if(Gdx.input.isKeyPressed(Input.Keys.S)) y -= speed * Gdx.graphics.getDeltaTime();
+
+		hitbox.updatePosition(x - oldX, y - oldY);
 		
 	}
 	
@@ -65,6 +82,7 @@ public class TestObject extends Entity {
 		}
 		
 	}
+
 	
 	
 }

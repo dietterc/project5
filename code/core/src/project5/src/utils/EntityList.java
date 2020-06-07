@@ -1,11 +1,13 @@
 /**
  * Linked list for storing entities 
  */
-package project5.src;
+package project5.src.utils;
+
+import project5.src.*;
 
 public class EntityList {
 	
-	public Node top;
+	private Node top;
 	private Node iterator;
 	
 	public EntityList() {
@@ -39,4 +41,9 @@ public class EntityList {
 		
 		
 	}
+
+	public Entity getTopItem() {
+		return top.item;
+	}
+
 }
