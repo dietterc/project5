@@ -3,6 +3,8 @@ package project5.src;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
+import project5.src.utils.*;
+
 public class Wall extends Entity {
 
 	boolean collision;
@@ -19,6 +21,9 @@ public class Wall extends Entity {
 		speed = 0;
 		
 		collision = false;
+
+		Point centre = new Point(x, y);
+		hitbox = new Hitbox(this, centre, 20, 20);
 		
 	}
 	

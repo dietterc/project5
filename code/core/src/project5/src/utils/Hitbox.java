@@ -1,6 +1,10 @@
+/*
+
+
+*/
+
 package project5.src.utils;
 
-import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -11,109 +15,53 @@ import project5.src.Main;
 
 public class Hitbox {
     
-    ArrayList<SubHitbox> subBoxes;
-    int subBoxCount;
-
-    public Hitbox(Entity owner, Point[] points){
-        subBoxCount = 0;
-        subBoxes = new ArrayList<SubHitbox>(); 
-
-        if(points.length % 4 != 0) {
-            System.out.println("Hitbox error for " + owner.getName());
-            return;
-        }
-
-        Main.hitboxList.add(this);
-
-        for(int i=0;i<points.length;i+=4) {
-            subBoxCount++;
-            subBoxes.add(new SubHitbox(points[i],points[i+1],points[i+2],points[i+3]));
-        }
-    }
-
-    public void updatePosition(int xDiff, int yDiff) {
-        
-        //update the position of the hitboxes 
-        for(int i=0;i<subBoxes.size();i++) {
-            subBoxes.get(i).updatePosition(xDiff, yDiff);
-        }
-
-
-    }
-
-    public void draw() {
-        
-        for(int i=0;i<subBoxes.size();i++) {
-            subBoxes.get(i).draw();
-        }
-
-    }
-
-    public boolean overlaps(Hitbox other) {
-
-        for(int i=0;i<subBoxes.size();i++) {
-            for(int j=0;j<other.subBoxes.size();j++) {
-                
-                SubHitbox box1 = subBoxes.get(i);
-                SubHitbox box2 = other.subBoxes.get(j);
-
-                if(box1.overlaps(box2)) {
-                    return true;
-                }
-
-            }
-        }
-
-        return false;
-    }
-
-}
-
-class SubHitbox {
-
-    Point p1;
-    Point p2;
-    Point p3;
-    Point p4;
+    Point centre;
+    int width;
+    int height;
+    float[] vertices;
 
     ShapeRenderer shape;
 
-    public SubHitbox(Point p1, Point p2, Point p3, Point p4) {
 
-        this.p1 = p1; //bottom left
-        this.p2 = p2; //top left
-        this.p3 = p3; //top right
-        this.p4 = p4; //bottom right
+    public Hitbox(Entity owner, Point centre, int width, int height){
+        
+        this.centre = centre;
+        this.width = width;
+        this.height = height;
+
+        int x = centre.getPoint()[0] - width / 2; 
+        int y = centre.getPoint()[1] - height / 2;
+
+        float[] vertices = {x,y,x+width,y,x+width,y+height,x,y+height};
+        this.vertices = vertices;
 
         shape = new ShapeRenderer();
 
+        Main.hitboxList.add(this);
+    }
+
+    public void updatePosition(int xDiff, int yDiff, int angleDiff) {
+
+        centre.add(xDiff, yDiff);
+
+        int x = centre.getPoint()[0] - width / 2; 
+        int y = centre.getPoint()[1] - height / 2;
+        float[] vertices = {x,y,x+width,y,x+width,y+height,x,y+height};
+        this.vertices = vertices;
+
+        
     }
 
     public void draw() {
 
-        int x = p1.getPoint()[0];
-        int y = p1.getPoint()[1];
-
-        int width = Math.abs(x - p4.getPoint()[0]);
-        int height = Math.abs(y - p2.getPoint()[1]);
-
         shape.begin(ShapeType.Line);
-		shape.setColor(Color.BLACK);
-		shape.rect(x, y, width, height);
+        shape.setColor(Color.BLACK);
+        shape.polygon(vertices);
         shape.end();
 
     }
 
-    public void updatePosition(int xDiff, int yDiff) {
-
-        p1.add(xDiff, yDiff);
-        p2.add(xDiff, yDiff);
-        p3.add(xDiff, yDiff);
-        p4.add(xDiff, yDiff);
-
-    }
-
-    public boolean overlaps(SubHitbox other) {
+    public boolean overlaps(Hitbox other) {
 
         
 

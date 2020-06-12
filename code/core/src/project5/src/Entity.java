@@ -1,7 +1,6 @@
 package project5.src;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.Rectangle;
 
 import project5.src.utils.*;
 
@@ -30,10 +29,13 @@ public abstract class Entity {
 	
 	protected boolean collidingWith(Entity other) {
 		
-		if(hitbox.overlaps(other.hitbox)) {
-			//System.out.println("Collision");
-		}else {
-			//System.out.println("-");
+		if(hitbox != null) {
+			if(hitbox.overlaps(other.hitbox)) {
+				//System.out.println("Collision");
+			}else {
+				//System.out.println("-");
+			}
+			return false;
 		}
 		return false;
 	}

@@ -9,6 +9,9 @@ import project5.src.utils.*;
 
 public class TestObject extends Entity {
 
+	int oldX;
+	int oldY;
+	int oldAngle;
 
 	//called when object is created
 	public TestObject() {
@@ -23,9 +26,9 @@ public class TestObject extends Entity {
 
 		name = "Test Object 1";
 
-		Point[] boxes = {new Point(175,175),new Point(175,225),new Point(225,225),new Point(225,175)};
+		Point centre = new Point(x,y);
 
-		hitbox = new Hitbox(this,boxes);
+		hitbox = new Hitbox(this,centre,35,45);
 		
 	}
 	
@@ -37,27 +40,26 @@ public class TestObject extends Entity {
 	 * Called every game loop for every entity.
 	 */
 	public void step() {
-		super.step(); //call parents first
+
 		movement();
-
 		pointAtMouse();
-
 		collidingWith(Main.masterList.getTopItem());
+
+		super.step(); //call parents last
+		hitbox.updatePosition(x - oldX, y - oldY, angle - oldAngle);
 
 	}
 	
 	private void movement() {
 		
-		int oldX = x;
-		int oldY = y;
+		oldX = x;
+		oldY = y;
 
 		if(Gdx.input.isKeyPressed(Input.Keys.A)) x -= speed * Gdx.graphics.getDeltaTime();
 		if(Gdx.input.isKeyPressed(Input.Keys.D)) x += speed * Gdx.graphics.getDeltaTime();
 		if(Gdx.input.isKeyPressed(Input.Keys.W)) y += speed * Gdx.graphics.getDeltaTime();
 		if(Gdx.input.isKeyPressed(Input.Keys.S)) y -= speed * Gdx.graphics.getDeltaTime();
 
-		hitbox.updatePosition(x - oldX, y - oldY);
-		
 	}
 	
 	private void pointAtMouse() {
