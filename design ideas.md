@@ -1,5 +1,4 @@
 ## Project arcitecture
-The game source code will adhere to the MVC design pattern   
 
 The order that processes are run in each iteration of the game loop will be determined by a priority system. (ie. networking then player movement then enviroment etc.)
 
