@@ -28,7 +28,7 @@ public class TestObject extends Entity {
 
 		Point centre = new Point(x,y);
 
-		hitbox = new Hitbox(this,centre,35,45);
+		hitbox = new Hitbox(this,centre,45,45);
 		
 	}
 	
@@ -43,8 +43,7 @@ public class TestObject extends Entity {
 
 		movement();
 		pointAtMouse();
-		collidingWith(Main.masterList.getTopItem());
-
+		//System.out.println(x + ", " + y);
 		super.step(); //call parents last
 		hitbox.updatePosition(x - oldX, y - oldY, angle - oldAngle);
 

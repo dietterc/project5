@@ -22,8 +22,7 @@ public class Wall extends Entity {
 		
 		collision = false;
 
-		Point centre = new Point(x, y);
-		hitbox = new Hitbox(this, centre, 20, 20);
+		hitbox = new Hitbox(this, new Point(x - 24, y + 77), 48, 250);
 		
 	}
 	

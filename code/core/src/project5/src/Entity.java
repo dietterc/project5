@@ -30,12 +30,7 @@ public abstract class Entity {
 	protected boolean collidingWith(Entity other) {
 		
 		if(hitbox != null) {
-			if(hitbox.overlaps(other.hitbox)) {
-				//System.out.println("Collision");
-			}else {
-				//System.out.println("-");
-			}
-			return false;
+			return hitbox.overlaps(other.hitbox);
 		}
 		return false;
 	}
